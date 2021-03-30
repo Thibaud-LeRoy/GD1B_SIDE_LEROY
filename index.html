@@ -16,13 +16,13 @@
 
 var config = {
     type: Phaser.AUTO,
-    width: 1280,
-    height: 720,
+    width: 3840, //1280 //3840
+    height: 2160, //720 //2160
     physics: {
         default: 'arcade',
         arcade: {
             gravity: { y: 300 },
-            debug: false
+            debug: true,
         }
     },
     input : {gamepad:true},
@@ -32,30 +32,139 @@ var config = {
         update: update
     }
 };
-
-
+var platforms;
+var cursors;
+var player;
 var game = new Phaser.Game(config);
 
 function preload ()
 {
-    this.load.image('ice1', 'assets/_Platform/platform_ice.png');
-    this.load.image('ice1', 'assets/_Platform/platform.png');
-    this.load.image('perso', 'assets/_Characters/dude.png');
-    this.load.image('fond', 'assets/_Background/fond.png')
-    this.load.image('green', 'assets/boomerang.png')
+    ///////////////////////////////////////////////////////////////////////
+    //                         PERSONNAGE JOUABLE                        //
+    ///////////////////////////////////////////////////////////////////////
+    this.add.sprite('perso','assets/_Characters/_CH_LOUTRE/chloutre_run/spritesheet_chloutre_run.png',{ frameWidth: 211.25, frameHeight: 272 });;
+    
+    ///////////////////////////////////////////////////////////////////////
+    //                             PLATEFORMES                           //
+    ///////////////////////////////////////////////////////////////////////
+    this.load.image('croquis', 'assets/_Platform/_roche/croquis.png');
+    this.load.image('platform1.1', 'assets/_Platform/_roche/platform_1.1.png');
+    this.load.image('platform1.2', 'assets/_Platform/_roche/platform_1.2.png');
+    this.load.image('platform1.3', 'assets/_Platform/_roche/platform_1.3.png');
+    this.load.image('platform1.4', 'assets/_Platform/_roche/platform_1.4.png');
+    this.load.image('platform1.5', 'assets/_Platform/_roche/platform_1.5.png');
+    this.load.image('platform1.6', 'assets/_Platform/_roche/platform_1.6.png');
+    this.load.image('platform1.7', 'assets/_Platform/_roche/platform_1.7.png');
+    this.load.image('platform1.8', 'assets/_Platform/_roche/platform_1.8.png');
+    this.load.image('platform1.9', 'assets/_Platform/_roche/platform_1.9.png');
+    this.load.image('platform1.10', 'assets/_Platform/_roche/platform_1.10.png');
+    this.load.image('platform1.11', 'assets/_Platform/_roche/platform_1.11.png');
+    this.load.image('platform1.12', 'assets/_Platform/_roche/platform_1.12.png');
+    this.load.image('platform1.13', 'assets/_Platform/_roche/platform_1.13.png');
+    this.load.image('platform1.14', 'assets/_Platform/_roche/platform_1.14.png');
+    this.load.image('platform1.15', 'assets/_Platform/_roche/platform_1.15.png');
+    this.load.image('platform1.16', 'assets/_Platform/_roche/platform_1.16.png');
+    this.load.image('platform1.17', 'assets/_Platform/_roche/platform_1.17.png');
+    this.load.image('platform1.18', 'assets/_Platform/_roche/platform_1.18.png');
+    this.load.image('platform1.19', 'assets/_Platform/_roche/platform_1.19.png');
+    this.load.image('platform1.20', 'assets/_Platform/_roche/platform_1.20.png');
+    this.load.image('platform1.21', 'assets/_Platform/_roche/platform_1.21.png');
+    this.load.image('platform1.22', 'assets/_Platform/_roche/platform_1.22.png');
+    this.load.image('platform1.23', 'assets/_Platform/_roche/platform_1.23.png');
+    this.load.image('platform1.24', 'assets/_Platform/_roche/platform_1.24.png');
+
+    ///////////////////////////////////////////////////////////////////////
+    //                         OBJETS UTILISABLES                        //
+    ///////////////////////////////////////////////////////////////////////
+
+
+
+    ///////////////////////////////////////////////////////////////////////
+    //                         FOND                                      //
+    ///////////////////////////////////////////////////////////////////////
+    this.load.image('map', 'assets/_Background/MAP_COMPLETE.png');
+    this.load.image('titleScreen', 'assets/_Titlescreen/ecran_accueil_chloutre.png');
 }
 
 function create ()
 {
-    this.add.image(0,0,'fond').setOrigin(0);
-    this.add.image(400, 300, 'ice1').setScale(2);
-    this.add.image(50,100,'green').setScale(1.5);
+    platforms = this.physics.add.staticGroup();
+
+    //this.add.image(0,0,'titleScreen').setOrigin(0).setScale(3);
+    this.add.image(0,0, 'map').setOrigin(0);
+    platforms.create(0,500, 'platform1.1');
+    platforms.create(1300,500, 'platform1.2');
+    platforms.create(1815,400, 'platform1.3');
+
+
+    player = this.physics.add.sprite(50,300,'perso');
+    player.setCollideWorldBounds(true);
+    this.physics.add.collider(player, platforms);
+
+    //this.add.image(0,0, 'platform1.4').setOrigin(0);
+    //this.add.image(0,0, 'platform1.5').setOrigin(0);
+    //this.add.image(0,0, 'platform1.6').setOrigin(0);
+    //this.add.image(0,0, 'platform1.7').setOrigin(0);
+    //this.add.image(0,0, 'platform1.8').setOrigin(0);
+    //this.add.image(0,0, 'platform1.9').setOrigin(0);
+    //this.add.image(0,0, 'platform1.10').setOrigin(0);
+    //this.add.image(0,0, 'platform1.11').setOrigin(0);
+    //this.add.image(0,0, 'platform1.12').setOrigin(0);
+    //this.add.image(0,0, 'platform1.13').setOrigin(0);
+    //this.add.image(0,0, 'platform1.14').setOrigin(0);
+    //this.add.image(0,0, 'platform1.15').setOrigin(0);
+    //this.add.image(0,0, 'platform1.16').setOrigin(0);
+    //this.add.image(0,0, 'platform1.17').setOrigin(0);
+    //this.add.image(0,0, 'platform1.18').setOrigin(0);
+    //this.add.image(0,0, 'platform1.19').setOrigin(0);
+    //this.add.image(0,0, 'platform1.20').setOrigin(0);
+    //this.add.image(0,0, 'platform1.21').setOrigin(0);
+    //this.add.image(0,0, 'platform1.22').setOrigin(0);
+    //this.add.image(0,0, 'platform1.23').setOrigin(0);
+    //this.add.image(0,0, 'platform1.24').setOrigin(0);
+    
+    this.anims.create({
+        key: 'left',
+        frames: this.anims.generateFrameNumbers('perso', { start: 0, end: 3 }),
+        frameRate: 3,
+        repeat: -1
+    });
+
+    this.anims.create({
+        key: 'right',
+        frames: this.anims.generateFrameNumbers('perso', { start: 4, end: 8 }),
+        frameRate: 3,
+        repeat: -1
+    });
+    
+    cursors = this.input.keyboard.createCursorKeys();
+
 }
 
 function update ()
 {
-    
+    if(cursors.right.isDown){
+       player.anims.play('right',true); 
+       player.setVelocityX(300);
+    }
+
+    if(cursors.left.isDown){
+       player.anims.play('left',true);
+       player.setVelocityX(-300); 
+    }
+
+    if(cursors.up.isDown){
+       player.setVelocityY(150); 
+    }
+
+
+
+/*
+    if(gameOver){
+        return;
+    }*/
 }
+
 
 
 
